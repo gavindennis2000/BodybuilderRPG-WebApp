@@ -1,0 +1,6 @@
+@BodybuilderRPG.Server_HostAddress = http://localhost:5097
+
+GET {{BodybuilderRPG.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
