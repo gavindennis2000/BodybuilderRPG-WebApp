@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { Box, Paper, Button, Stack } from '@mui/material';
 import { Link, useLocation } from 'react-router';
 
@@ -9,17 +9,17 @@ const buttonSX = {
   borderRadius: '0',
 };
 
-const buttonCurrentPageColor = 'rgba(13, 13, 13, 0.95)';
+const buttonCurrentPageColor = 'rgba(13, 13, 13, 0.9)';
 
 
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
 
     const location = useLocation();
 
     return (
       <>
-        <Paper square sx={{backgroundColor: 'rgba(38, 38, 38, 0.95)'}}>
+        <Paper square sx={{backgroundColor: 'rgba(38, 38, 38, 0.9)'}}>
             <div style={{
                 // marginTop: '20px', 
                 marginLeft: '20px',
@@ -32,7 +32,7 @@ const Navbar = () => {
             </div>
       </Paper>
 
-            <Paper square sx={{backgroundColor: 'rgb(26, 26, 26, 0.95)'}}>
+            <Paper square sx={{backgroundColor: 'rgb(26, 26, 26, 0.9)'}}>
                 <Box display="flex" justifyContent="center" alignItems="center">
                 <Stack direction="row" spacing={2}>
                 <Button component={Link} to="/" sx={{...buttonSX, backgroundColor: location.pathname == "/" ? buttonCurrentPageColor : "transparent"}}>

@@ -38,9 +38,9 @@
   color: rgba(255, 255, 255, 0.87); /* light text on dark bg */
 }
 
-h1, h2, p {
+h1, h2, p, footer {
   font-family: 'Roboto';
-  color: rgba(255, 255, 255, 0.87);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 /* Optional: MUI Paper components default bg/text */
@@ -57,4 +57,13 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+img {
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: block;
 }
