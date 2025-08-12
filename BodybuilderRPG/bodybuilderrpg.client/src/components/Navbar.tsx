@@ -3,12 +3,13 @@ import { Box, Paper, Button, Stack } from '@mui/material';
 import { Link, useLocation } from 'react-router';
 
 const buttonSX = {
+  color: '#90caf9',
   width: "180px",
   height: "50px",
   borderRadius: '0',
 };
 
-const buttonCurrentPageColor = '#b3e7ff';
+const buttonCurrentPageColor = 'rgba(13, 13, 13, 0.95)';
 
 
 
@@ -17,18 +18,21 @@ const Navbar = () => {
     const location = useLocation();
 
     return (
-        <Paper square sx={{backgroundColor: 'rgb(245, 252, 255, 0.9)'}}>
+      <>
+        <Paper square sx={{backgroundColor: 'rgba(38, 38, 38, 0.95)'}}>
             <div style={{
-                margin: '20px', 
+                // marginTop: '20px', 
                 marginLeft: '20px',
                 marginRight: '20px',
                 paddingTop: '1px',
             }}>
-                <h1 style={{marginBottom: "0px"}}>Bodybuilder RPG</h1>
-                <p style={{marginBottom: "30px", marginTop: '0px'}}>A Retro JRPG-Inspired Bodybuilding Adventure.</p>
+                <h1 style={{marginTop: "20px"}}>Bodybuilder RPG</h1>
+                <p style={{
+                  paddingBottom: '20px'}}>A Retro JRPG-Inspired Bodybuilding Adventure.</p>
             </div>
+      </Paper>
 
-            <Paper square sx={{backgroundColor: '#e6f7ff'}}>
+            <Paper square sx={{backgroundColor: 'rgb(26, 26, 26, 0.95)'}}>
                 <Box display="flex" justifyContent="center" alignItems="center">
                 <Stack direction="row" spacing={2}>
                 <Button component={Link} to="/" sx={{...buttonSX, backgroundColor: location.pathname == "/" ? buttonCurrentPageColor : "transparent"}}>
@@ -44,13 +48,13 @@ const Navbar = () => {
           </Box>
         </Paper>
         <Paper square sx={{
-          backgroundColor: '#b3e7ff',
+          backgroundColor: buttonCurrentPageColor,
           height: '10px'
         }}>
           <Stack direction="row" spacing={6}>
           </Stack>
         </Paper>
-      </Paper>
+    </>
   )
 }
 

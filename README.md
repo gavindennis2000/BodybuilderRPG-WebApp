@@ -1,2 +1,10 @@
-# protein-pizza-web-app
-An ASP.NET web application for sharing homemade pizza recipes. Specifically, healthier alternatives to pizza you would buy at a fast food chain.
+# bodybuilder-rpg-web-app
+An SPA for Bodybuilder RPG, an upcoming JRPG-inspired indie game.
+
+Resources/Documentation:
+    Front-end UI by Material UI
+        https://mui.com/material-ui/
+
+Updates:
+    2025/08/12
+        Initial building of front end
