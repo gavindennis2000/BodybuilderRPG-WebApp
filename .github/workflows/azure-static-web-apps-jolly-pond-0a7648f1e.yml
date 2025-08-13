@@ -27,17 +27,17 @@ jobs:
         with:
           node-version: '18.x'
 
-      # Install dependencies
+      # Install dependencies with legacy peer deps to avoid conflicts
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
         working-directory: BodybuilderRPG/bodybuilderrpg.client
 
       # Build the React/Vite app
       - name: Build
-        run: npm run build
+        run: npm run build --force
         working-directory: BodybuilderRPG/bodybuilderrpg.client
 
-      # Deploy to Azure Static Web Apps
+      # Deploy the pre-built static files to Azure Static Web Apps
       - name: Deploy to Azure Static Web Apps
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -45,9 +45,9 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_JOLLY_POND_0A7648F1E }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "BodybuilderRPG/bodybuilderrpg.client"
+          app_location: "BodybuilderRPG/bodybuilderrpg.client/dist" # Vite build output
           api_location: "" 
-          output_location: "BodybuilderRPG/bodybuilderrpg.client/build"
+          output_location: "" # already using pre-built output
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
