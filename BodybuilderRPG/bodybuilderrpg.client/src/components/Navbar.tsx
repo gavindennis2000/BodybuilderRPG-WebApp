@@ -38,11 +38,14 @@ const Navbar: React.FC = () => {
                 <Button component={Link} to="/" sx={{...buttonSX, backgroundColor: location.pathname == "/" ? buttonCurrentPageColor : "transparent"}}>
                     Home
                 </Button>
+                <Button component={Link} to="/demo" sx={{...buttonSX, backgroundColor: location.pathname == "/demo" ? buttonCurrentPageColor : "transparent"}}>
+                    Play 
+                </Button>
+                <Button component={Link} to="/releases" sx={{...buttonSX, backgroundColor: location.pathname == "/releases" ? buttonCurrentPageColor : "transparent"}}>
+                    Releases
+                </Button>
                 <Button component={Link} to="/about" sx={{...buttonSX, backgroundColor: location.pathname == "/about" ? buttonCurrentPageColor : "transparent"}}>
                     About 
-                </Button>
-                <Button component={Link} to="/demo" sx={{...buttonSX, backgroundColor: location.pathname == "/demo" ? buttonCurrentPageColor : "transparent"}}>
-                    Demo 
                 </Button>
           </Stack>
           </Box>

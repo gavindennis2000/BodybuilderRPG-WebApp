@@ -1,7 +1,7 @@
 import './App.css';
 import { useEffect } from 'react';
 import { Routes, Route, useLocation, } from 'react-router-dom';
-import { Footer, Navbar } from './components/';
+import { Footer, Navbar } from './components/'
 import { About, Demo, Home } from './pages'
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
                 path = "About";
                 break;
             case "/demo":
-                path = "Play Demo";
+                path = "Play BBRPG Online";
                 break;
         }
         const titleStr = "Bodybuilder RPG" + " | " + path

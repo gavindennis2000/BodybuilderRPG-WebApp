@@ -4,7 +4,7 @@ import React from 'react'
 const About: React.FC = () => {
   return (
     <Paper square sx={{backgroundColor: 'rgb(26, 26, 26, 0.9)', marginTop: '20px', padding: '10px'}}>
-        <Container sx={{marginTop: '10px', textAlign: 'left'}}>
+        <Container sx={{marginTop: '10px', textAlign: 'left', width: '90%'}}>
             <h1 style={{paddingBottom: '10px', textAlign: 'center'}}>
               About the Creator
             </h1>

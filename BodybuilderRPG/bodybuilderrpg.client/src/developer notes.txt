@@ -1,0 +1,68 @@
+How to modify GX games export for web app:
+    Delete google ads
+    search 'gx' to get rid of buttons
+    add fullscreen button 
+        button style:
+            #fullscreen-btn {
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                width: 42px;
+                height: 42px;
+                font-size: 20px;
+                font-weight: bold;
+                line-height: 1;
+                text-align: center;
+                color: white;
+                background: linear-gradient(
+                    135deg,
+                    rgba(42, 42, 42, 0.25),
+                    rgba(68, 68, 68, 0.25)
+                );
+                border: 2px solid #666;
+                border-radius: 8px;
+                cursor: pointer;
+                z-index: 9999;
+                transition: all 0.2s ease;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            }
+
+            #fullscreen-btn:hover {
+                background: linear-gradient(
+                    135deg,
+                    rgba(59, 59, 59, 0.35),
+                    rgba(85, 85, 85, 0.35)
+                );
+                border-color: #999;
+                transform: scale(1.08);
+                box-shadow: 0 4px 6px rgba(0,0,0,0.6);
+            }
+
+            #fullscreen-btn:active {
+                transform: scale(0.96);
+                box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            }
+        
+        button (put under canvas in body)
+            <button id="fullscreen-btn">⛶</button>
+
+        script for button (end of body tag)
+            <script>
+            document.getElementById("fullscreen-btn").addEventListener("click", () => {
+                const gameCanvas = document.querySelector("canvas");
+
+                if (!document.fullscreenElement) {
+                    if (gameCanvas.requestFullscreen) {
+                        gameCanvas.requestFullscreen();
+                    } else if (gameCanvas.webkitRequestFullscreen) {
+                        gameCanvas.webkitRequestFullscreen();
+                    }
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    }
+                }
+            });
+            </script>
