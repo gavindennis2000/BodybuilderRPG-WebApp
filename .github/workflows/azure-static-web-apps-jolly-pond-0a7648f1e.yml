@@ -28,9 +28,9 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "./bodybuilderrpg.client" # App source code path
+          app_location: "BodybuilderRPG/bodybuilderrpg.client" # App source code path
           api_location: "" # Api source code path - optional
-          output_location: "./bodybuilderrpg.client/dist" # Built app content directory - optional
+          output_location: "BodybuilderRPG/bodybuilderrpg.client/dist" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
@@ -44,4 +44,5 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_JOLLY_POND_0A7648F1E }}
           action: "close"
+
 
