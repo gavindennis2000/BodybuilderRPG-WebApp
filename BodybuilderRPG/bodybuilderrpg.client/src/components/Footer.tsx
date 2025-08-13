@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import { Box, Paper, Button, Stack } from '@mui/material';
-import { Link, useLocation } from 'react-router';
+import { Paper } from '@mui/material';
 
 const Footer: React.FC = () => {
 

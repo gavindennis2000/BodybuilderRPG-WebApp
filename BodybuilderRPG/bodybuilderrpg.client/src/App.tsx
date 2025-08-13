@@ -2,7 +2,8 @@ import './App.css';
 import { useEffect } from 'react';
 import { Routes, Route, useLocation, } from 'react-router-dom';
 import { Footer, Navbar } from './components/'
-import { About, Demo, Home } from './pages'
+import { About, Play, Home } from './pages'
+import Releases from './pages/Releases';
 
 function App() {
 
@@ -18,8 +19,11 @@ function App() {
             case "/about":
                 path = "About";
                 break;
-            case "/demo":
+            case "/play":
                 path = "Play BBRPG Online";
+                break;
+            case "/releases":
+                path = "Download the Dang 'ol Game"
                 break;
         }
         const titleStr = "Bodybuilder RPG" + " | " + path
@@ -32,8 +36,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/demo" element={<Demo />} />
-                {/* Add more routes as needed */}
+                <Route path="/play" element={<Play />} />
+                <Route path="/releases" element={<Releases />} />
             </Routes>
             <Footer />
         </>

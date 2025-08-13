@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Box, Paper, Button, Stack } from '@mui/material';
 import { Link, useLocation } from 'react-router';
 
@@ -38,7 +37,7 @@ const Navbar: React.FC = () => {
                 <Button component={Link} to="/" sx={{...buttonSX, backgroundColor: location.pathname == "/" ? buttonCurrentPageColor : "transparent"}}>
                     Home
                 </Button>
-                <Button component={Link} to="/demo" sx={{...buttonSX, backgroundColor: location.pathname == "/demo" ? buttonCurrentPageColor : "transparent"}}>
+                <Button component={Link} to="/play" sx={{...buttonSX, backgroundColor: location.pathname == "/play" ? buttonCurrentPageColor : "transparent"}}>
                     Play 
                 </Button>
                 <Button component={Link} to="/releases" sx={{...buttonSX, backgroundColor: location.pathname == "/releases" ? buttonCurrentPageColor : "transparent"}}>
