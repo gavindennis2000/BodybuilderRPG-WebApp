@@ -35,7 +35,7 @@ jobs:
       - name: Copy frontend to backend
         run: |
           rm -rf BodybuilderRPG/BodybuilderRPG.Server/wwwroot/*
-          cp -r BodybuilderRPG/bodybuilderrpg.client/build/* BodybuilderRPG/BodybuilderRPG.Server/wwwroot/
+          cp -r BodybuilderRPG/bodybuilderrpg.client/dist/* BodybuilderRPG/BodybuilderRPG.Server/wwwroot/
 
       # Setup .NET
       - name: Setup .NET
@@ -66,5 +66,6 @@ jobs:
         with:
           app-name: YOUR_APP_NAME   # <-- replace with your App Service name
           package: ./publish
+
 
 
