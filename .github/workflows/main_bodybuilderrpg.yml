@@ -24,18 +24,18 @@ jobs:
 
       # Build React frontend
       - name: Install frontend dependencies
-        working-directory: BodybuilderRPG/BodybuilderRPG.Client
+        working-directory: BodybuilderRPG/bodybuilderrpg.client
         run: npm install
 
       - name: Build frontend
-        working-directory: BodybuilderRPG/BodybuilderRPG.Client
+        working-directory: BodybuilderRPG/bodybuilderrpg.client
         run: npm run build
 
       # Copy React build output into ASP.NET wwwroot
       - name: Copy frontend to backend
         run: |
           rm -rf BodybuilderRPG/BodybuilderRPG.Server/wwwroot/*
-          cp -r BodybuilderRPG/BodybuilderRPG.Client/build/* BodybuilderRPG/BodybuilderRPG.Server/wwwroot/
+          cp -r BodybuilderRPG/bodybuilderrpg.client/build/* BodybuilderRPG/BodybuilderRPG.Server/wwwroot/
 
       # Setup .NET
       - name: Setup .NET
@@ -66,3 +66,4 @@ jobs:
         with:
           app-name: YOUR_APP_NAME   # <-- replace with your App Service name
           package: ./publish
+
