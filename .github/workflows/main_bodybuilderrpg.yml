@@ -20,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
       # Build React frontend
       - name: Install frontend dependencies
@@ -66,4 +66,5 @@ jobs:
         with:
           app-name: YOUR_APP_NAME   # <-- replace with your App Service name
           package: ./publish
+
 
