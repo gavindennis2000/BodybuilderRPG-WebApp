@@ -64,8 +64,9 @@ jobs:
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: YOUR_APP_NAME   # <-- replace with your App Service name
+          app-name: BodybuilderRPG
           package: ./publish
+
 
 
 
