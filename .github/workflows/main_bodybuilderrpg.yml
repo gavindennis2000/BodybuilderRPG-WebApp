@@ -18,6 +18,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install front-end dependencies
+        run: |
+          cd ./BodybuilderRPG/bodybuilderrpg.client/
+          npm install
+
+      - name: Build front end
+        run: |
+          cd ./BodybuilderRPG/bodybuilderrpg.client/
+          npm run build
+
+      - name: Copy front end to wwwroot
+        run: |
+          mkdir -p ./wwwroot
+          cp -r BodybuilderRPG/bodybuilderrpg.client/dist/* ./wwwroot/
+
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
@@ -62,6 +82,7 @@ jobs:
           slot-name: 'Production'
           package: .
           
+
 
 
 
