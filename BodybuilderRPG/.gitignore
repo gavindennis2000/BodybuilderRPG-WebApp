@@ -2,7 +2,6 @@
 bin/
 obj/
 *.dll
-*.exe
 *.pdb
 *.mdb
 *.log
@@ -14,7 +13,7 @@ obj/
 secrets.json
 
 # ASP.NET publish outputs
-wwwroot/
+# wwwroot/
 dist/
 publish/
 *.Publish.xml
