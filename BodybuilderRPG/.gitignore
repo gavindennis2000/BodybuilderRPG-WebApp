@@ -13,7 +13,7 @@ obj/
 secrets.json
 
 # ASP.NET publish outputs
-# wwwroot/
+wwwroot/
 dist/
 publish/
 *.Publish.xml
