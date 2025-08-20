@@ -1,71 +1,55 @@
-name: Build and Deploy Full Stack App to Azure
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy ASP.Net Core app to Azure Web App - BodybuilderRPG
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: windows-latest
     permissions:
-      id-token: write
-      contents: read
+      contents: read #This is required for actions/checkout
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      # Install Node.js for React build
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      # Build React frontend
-      - name: Install frontend dependencies
-        working-directory: BodybuilderRPG/bodybuilderrpg.client
-        run: npm install
-
-      - name: Build frontend
-        working-directory: BodybuilderRPG/bodybuilderrpg.client
-        run: npm run build
-
-      # Copy React build output into ASP.NET wwwroot
-      - name: Copy frontend to backend
-        run: |
-          rm -rf BodybuilderRPG/BodybuilderRPG.Server/wwwroot/*
-          cp -r BodybuilderRPG/bodybuilderrpg.client/dist/* BodybuilderRPG/BodybuilderRPG.Server/wwwroot/
-
-      # Setup .NET
-      - name: Setup .NET
+      - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '8.x'
 
-      # Restore, build, publish backend
-      - name: Restore dependencies
-        run: dotnet restore BodybuilderRPG/BodybuilderRPG.Server/BodybuilderRPG.Server.csproj
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
 
-      - name: Build backend
-        run: dotnet build BodybuilderRPG/BodybuilderRPG.Server/BodybuilderRPG.Server.csproj --configuration Release --no-restore
+      - name: dotnet publish
+        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
-      - name: Publish backend
-        run: dotnet publish BodybuilderRPG/BodybuilderRPG.Server/BodybuilderRPG.Server.csproj -c Release -o ./publish --no-build
-
-      # Deploy to Azure (with OIDC)
-      - name: Azure Login
-        uses: azure/login@v2
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          name: .net-app
+          path: ${{env.DOTNET_ROOT}}/myapp
 
-      - name: Deploy to Azure WebApp
+  deploy:
+    runs-on: windows-latest
+    needs: build
+    
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: .net-app
+      
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: BodybuilderRPG
-          package: ./publish
-
-      
-
+          app-name: 'BodybuilderRPG'
+          slot-name: 'Production'
+          package: .
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_40401950F4CF430E8B912BCE495154F2 }}
