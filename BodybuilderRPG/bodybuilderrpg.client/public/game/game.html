@@ -639,7 +639,7 @@
             //text = text.replace(/</g, "&lt;");
             //text = text.replace(/>/g, "&gt;");
             //text = text.replace('\n', '<br>', 'g');
-            // console.log(text);
+            console.log(text);
             if (text === "Entering main loop.") {
               // It seems that this text ensures game is loaded.
               ensureAspectRatio();
@@ -1065,7 +1065,7 @@
       if (/Android|iPhone|iPod/i.test(navigator.userAgent)) {
         bodyElement.className = "scrollingDisabled";
         canvasElement.classList.add("animatedSizeTransitions");
-        // outputContainerElement.hidden = true;
+        outputContainerElement.hidden = true;
       }
 
       document.addEventListener("visibilitychange", (event) => {
