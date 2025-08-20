@@ -24,10 +24,10 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build ./BodybuilderRPG.Server/BodybuilderRPG.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o "/BodybuilderRPG.Server/BodybuilderRPG.Server.csproj"
+        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -38,13 +38,23 @@ jobs:
   deploy:
     runs-on: windows-latest
     needs: build
-    
+    permissions:
+      id-token: write #This is required for requesting the JWT
+      contents: read #This is required for actions/checkout
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: .net-app
       
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.__clientidsecretname__ }}
+          tenant-id: ${{ secrets.__tenantidsecretname__ }}
+          subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
@@ -52,6 +62,4 @@ jobs:
           app-name: 'BodybuilderRPG'
           slot-name: 'Production'
           package: .
-
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_40401950F4CF430E8B912BCE495154F2 }}
-
+          
