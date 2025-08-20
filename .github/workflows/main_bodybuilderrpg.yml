@@ -27,7 +27,7 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/BodybuilderRPG.Server.csproj"
+        run: dotnet publish -c Release -o "/BodybuilderRPG.Server/BodybuilderRPG.Server.csproj"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -54,3 +54,4 @@ jobs:
           package: .
 
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_40401950F4CF430E8B912BCE495154F2 }}
+
