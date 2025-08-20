@@ -36,7 +36,7 @@ jobs:
       - name: Copy front end to wwwroot
         run: |
           mkdir -p ./BodybuilderRPG/BodybuilderRPG.Server/wwwroot
-          cp -r BodybuilderRPG/bodybuilderrpg.client/dist/. ./BodybuilderRPG/BodybuilderRPG.Server/wwwroot/
+          cp -r ./BodybuilderRPG/bodybuilderrpg.client/dist/. ./BodybuilderRPG/BodybuilderRPG.Server/wwwroot/
 
       - name: List wwwroot contents
         run: ls -R ./BodybuilderRPG/BodybuilderRPG.Server/wwwroot
@@ -85,6 +85,9 @@ jobs:
           slot-name: 'Production'
           package: .
           
+
+
+
 
 
 
