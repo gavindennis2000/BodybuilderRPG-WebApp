@@ -2,19 +2,26 @@ using Microsoft.AspNetCore.StaticFiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Add services to the container
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.UseDefaultFiles();
-// app.UseStaticFiles();
+// Enable correct MIME types for GameMaker exports
+var provider = new FileExtensionContentTypeProvider();
+provider.Mappings[".wasm"] = "application/wasm";
+provider.Mappings[".data"] = "application/octet-stream";
 
-// Configure the HTTP request pipeline.
+// Serve static files with correct MIME types
+app.UseDefaultFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    ContentTypeProvider = provider
+});
+
+// Enable Swagger in development
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -25,18 +32,9 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-
-
-var provider = new FileExtensionContentTypeProvider();
-provider.Mappings[".data"] = "application/octet-stream";
-provider.Mappings[".wasm"] = "application/wasm";
-
-app.UseStaticFiles(new StaticFileOptions
-{
-    ContentTypeProvider = provider
-});
-
 app.MapControllers();
-app.MapFallbackToFile("/index.html");
+
+// If you're using a SPA and want to fallback to game.html:
+app.MapFallbackToFile("/index.html"); // Or "/index.html" if that's your entry point
 
 app.Run();
