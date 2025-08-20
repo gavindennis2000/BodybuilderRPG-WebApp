@@ -13,6 +13,7 @@ var app = builder.Build();
 var provider = new FileExtensionContentTypeProvider();
 provider.Mappings[".wasm"] = "application/wasm";
 provider.Mappings[".data"] = "application/octet-stream";
+provider.Mappings[".unx"] = "application/octet-stream";
 
 // Serve static files with correct MIME types
 app.UseDefaultFiles();
