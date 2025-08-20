@@ -37,6 +37,7 @@ jobs:
         run: |
           mkdir -p ./BodybuilderRPG/BodybuilderRPG.Server/wwwroot
           cp -r BodybuilderRPG/bodybuilderrpg.client/dist/. ./BodybuilderRPG/BodybuilderRPG.Server/wwwroot/
+          cp -r BodybuilderRPG/bodybuilderrpg.client/dist/game/* BodybuilderRPG/BodybuilderRPG.Server/wwwroot/game/
 
       - name: List wwwroot contents
         run: ls -R ./BodybuilderRPG/BodybuilderRPG.Server/wwwroot
@@ -85,6 +86,7 @@ jobs:
           slot-name: 'Production'
           package: .
           
+
 
 
 
