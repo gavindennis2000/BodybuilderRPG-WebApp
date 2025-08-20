@@ -24,7 +24,7 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build ./BodybuilderRPG.Server/BodybuilderRPG.csproj --configuration Release
+        run: dotnet build ./BodybuilderRPG/BodybuilderRPG.Server/BodybuilderRPG.csproj --configuration Release
 
       - name: dotnet publish
         run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
@@ -63,3 +63,4 @@ jobs:
           slot-name: 'Production'
           package: .
           
+
