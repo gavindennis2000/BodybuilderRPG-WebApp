@@ -38,9 +38,6 @@ jobs:
           mkdir -p ./BodybuilderRPG/BodybuilderRPG.Server/wwwroot
           cp -r BodybuilderRPG/bodybuilderrpg.client/dist/. ./BodybuilderRPG/BodybuilderRPG.Server/wwwroot/
 
-      - name: Copy HTML5 game build
-        run: cp -r BodybuilderRPG/bodybuilderrpg.client/game/* BodybuilderRPG/BodybuilderRPG.Server/wwwroot/game/
-
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
@@ -85,6 +82,7 @@ jobs:
           slot-name: 'Production'
           package: .
           
+
 
 
 
