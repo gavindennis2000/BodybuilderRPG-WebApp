@@ -38,6 +38,9 @@ jobs:
           mkdir -p ./BodybuilderRPG/BodybuilderRPG.Server/wwwroot
           cp -r BodybuilderRPG/bodybuilderrpg.client/dist/. ./BodybuilderRPG/BodybuilderRPG.Server/wwwroot/
 
+      - name: List wwwroot contents
+        run: ls -R ./BodybuilderRPG/BodybuilderRPG.Server/wwwroot
+  
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
@@ -82,6 +85,9 @@ jobs:
           slot-name: 'Production'
           package: .
           
+
+
+
 
 
 
